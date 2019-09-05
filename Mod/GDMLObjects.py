@@ -2,6 +2,10 @@ import FreeCAD, FreeCADGui, Part
 from pivy import coin
 
 import GDMLShared
+global GDML_WB_icons_path
+import gdml_locator, os, sys
+GDML_WBpath = os.path.dirname(gdml_locator.__file__)
+GDML_WB_icons_path =  os.path.join( GDML_WBpath, 'Resources', 'icons')
 
 # Global Material List
 global MaterialsList
@@ -68,6 +72,8 @@ class GDMLcommon :
 class GDMLBox(GDMLcommon) :
    def __init__(self, obj, x, y, z, lunit, material):
       '''Add some custom properties to our Box feature'''
+      global GDML_WB_icons_path
+      import os
       GDMLShared.trace("GDMLBox init")
       obj.addProperty("App::PropertyLength","x","GDMLBox","Length x").x=x
       obj.addProperty("App::PropertyLength","y","GDMLBox","Length y").y=y
@@ -80,6 +86,7 @@ class GDMLBox(GDMLcommon) :
       obj.addProperty("Part::PropertyPartShape","Shape","GDMLBox", "Shape of the Box")
       obj.Proxy = self
       self.Type = 'GDMLBox'
+      #obj.Proxy.Icon = os.path.join(GDML_WB_icons_path,'GDMLBoxFeature.svg')
 
    def onChanged(self, fp, prop):
        '''Do something when a property has changed'''

@@ -8,6 +8,11 @@ This Script includes the GUI Commands of the GDML module
 
 import FreeCAD,FreeCADGui
 from PySide import QtCore, QtGui
+import os, sys
+import gdml_locator
+global GDML_WB_icons_path
+GDML_WBpath = os.path.dirname(gdml_locator.__file__)
+GDML_WB_icons_path =  os.path.join( GDML_WBpath, 'Resources', 'icons')
 
 class BoxFeature:
     #    def IsActive(self):
@@ -32,6 +37,7 @@ class BoxFeature:
            return True
 
     def GetResources(self):
+        #return {'Pixmap'  : os.path.join(GDML_WB_icons_path,'GDMLBoxFeature.svg'), 'MenuText': \
         return {'Pixmap'  : 'GDMLBoxFeature', 'MenuText': \
                 QtCore.QT_TRANSLATE_NOOP('GDMLBoxFeature',\
                 'Box Object'), 'ToolTip': \
@@ -273,7 +279,9 @@ class CycleFeature :
 
 
     def GetResources(self):
-        return {'Pixmap'  : 'GDML_Cycle', 'MenuText': \
+        #return {'Pixmap'  : 'GDML_Cycle', 'MenuText': \
+        global GDML_WB_icons_path
+        return {'Pixmap'  : os.path.join(GDML_WB_icons_path,'GDML_Cycle.svg'), 'MenuText': \
                 QtCore.QT_TRANSLATE_NOOP('GDML_CycleGroup',\
                 'Cycle Group'), 'ToolTip': \
                 QtCore.QT_TRANSLATE_NOOP('GDML_CycleGroup', \
